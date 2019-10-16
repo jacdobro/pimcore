@@ -128,7 +128,6 @@ pimcore.object.tags.textarea = Class.create(pimcore.object.tags.abstract, {
 
     },
 
-
     getLayoutShow: function () {
         this.component = this.getLayoutEdit();
         if (this.fieldConfig.showCharCount) {

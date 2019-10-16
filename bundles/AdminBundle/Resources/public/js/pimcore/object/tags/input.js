@@ -127,7 +127,6 @@ pimcore.object.tags.input = Class.create(pimcore.object.tags.abstract, {
         charCount.setHtml(textField.getValue().length + "/" + this.fieldConfig.columnLength);
     },
 
-
     getLayoutShow: function () {
         this.component = this.getLayoutEdit();
         if (this.fieldConfig.showCharCount) {

@@ -99,7 +99,7 @@ pimcore.object.tags.input = Class.create(pimcore.object.tags.abstract, {
             //init word count
             this.updateCharCount(this.component, charCount);
 
-            return Ext.create("Ext.Panel", {
+            var panelWithCharCount = Ext.create("Ext.Panel", {
                 cls: "object_field",
                 style: "margin-bottom: 10px",
                 layout: {
@@ -111,6 +111,11 @@ pimcore.object.tags.input = Class.create(pimcore.object.tags.abstract, {
                     charCount
                 ]
             });
+            panelWithCharCount.isDirty = function () {
+                return false;
+            };
+
+            return panelWithCharCount;
 
         } else {
             return this.component;
@@ -122,11 +127,13 @@ pimcore.object.tags.input = Class.create(pimcore.object.tags.abstract, {
         charCount.setHtml(textField.getValue().length + "/" + this.fieldConfig.columnLength);
     },
 
-
     getLayoutShow: function () {
-
         this.component = this.getLayoutEdit();
-        this.component.setReadOnly(true);
+        if (this.fieldConfig.showCharCount) {
+            this.component.items.items[0].setReadOnly(true);
+        } else {
+            this.component.setReadOnly(true);
+        }
 
         return this.component;
     },
